@@ -1,9 +1,9 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
-  host: 'db.fhvyevovxkrqwsyfkazd.supabase.co',
+  host: 'db.vrexxhuudsofddtidury.supabase.co',
   database: 'postgres',
-  password: 'mij74zBuGqLjQiZq',
+  password: 'cET5cARFtz_IrgCJLDwvEydGkzbP0_fy',
   port: 5432,
 })
 
@@ -28,9 +28,9 @@ const getCurriculoById = (request, response) => {
 }
 
 const createCurriculo = (request, response) => {
-  const { name, endereco, formacao, experiencia } = request.body
+  const { Nome, Endereco, Formacao } = request.body
 
-  pool.query('INSERT INTO curriculo (name, formacao, experiencia) VALUES ($1, $2, $3, )', [name, formacao, experiencia], (error, results) => {
+  pool.query('INSERT INTO curriculo (Nome, Endereco, Formacao) VALUES ($1, $2, $3, )', [Nome, Endereco, Formacao], (error, results) => {
     if (error) {
       throw error
     }
@@ -40,11 +40,11 @@ const createCurriculo = (request, response) => {
 
 const updateCurriculo = (request, response) => {
   const id = parseInt(request.params.id)
-  const { name, formacao, experiencia } = request.body
+  const {Nome, Endereco, Formacao} = request.body
 
   pool.query(
-    'UPDATE curriculo SET name = $1, formacao = $2, experiencia = $3 WHERE id = $4',
-    [name, formacao, experiencia, id],
+    'UPDATE curriculo SET Nome = $1, Endereco = $2, Formacao= $3 WHERE id = $4',
+    [Nome, Endereco, Formacao, id],
     (error, results) => {
       if (error) {
         throw error
